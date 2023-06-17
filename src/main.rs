@@ -11,7 +11,7 @@ async fn post_webhook(request: Json<Option<payload::Entries>>) -> rocket::http::
     let token = std::env::var("WHATSAPP_TOKEN")
         .context("Unable to retrieve `WHATSAPP_TOKEN` from env")
         .unwrap();
-    info!("{:#?}", request);
+    info!("\n{:#?}", request);
 
     if request.is_none() {
         return rocket::http::Status::NotFound;
@@ -46,7 +46,7 @@ async fn post_webhook(request: Json<Option<payload::Entries>>) -> rocket::http::
                     .await;
 
                 match response {
-                    Ok(_) => info!("Response was sent successfully"),
+                    Ok(res) => info!("Response was sent successfully: \n{:#?}", res),
                     Err(err) => error!("Error sending message: {}", err),
                 }
             }
