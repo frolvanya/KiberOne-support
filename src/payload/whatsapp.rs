@@ -1,6 +1,6 @@
 use anyhow::Context;
 
-use rocket::serde::Deserialize;
+use rocket::serde::{json::Json, Deserialize};
 
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
@@ -105,28 +105,28 @@ pub fn get_webhook(hub: Hub) -> Option<(rocket::http::Status, String)> {
 }
 
 #[post("/whatsapp-webhook", data = "<request>")]
-pub async fn post_webhook(request: String /* Json<Option<Data>> */) -> rocket::http::Status {
+pub async fn post_webhook(request: Json<Option<Data>>) -> rocket::http::Status {
     info!("\n{:#?}", request);
 
-    // if request.is_none() {
-    //     return rocket::http::Status::NotFound;
-    // }
+    if request.is_none() {
+        return rocket::http::Status::NotFound;
+    }
 
-    // if let Some(req) = &request.0 {
-    //     if let Some(messages) = &req.entry[0].changes[0].value.messages {
-    //         if let Some(text) = &messages[0].text {
-    //             let phone_number_id = req.entry[0].changes[0]
-    //                 .value
-    //                 .metadata
-    //                 .phone_number_id
-    //                 .clone();
-    //             let from = messages[0].from.clone();
-    //             let text = text.body.clone();
+    if let Some(req) = &request.0 {
+        if let Some(messages) = &req.entry[0].changes[0].value.messages {
+            if let Some(text) = &messages[0].text {
+                let phone_number_id = req.entry[0].changes[0]
+                    .value
+                    .metadata
+                    .phone_number_id
+                    .clone();
+                let from = messages[0].from.clone();
+                let text = text.body.clone();
 
-    //             send_message(phone_number_id, from, text).await;
-    //         }
-    //     }
-    // }
+                send_message(phone_number_id, from, text).await;
+            }
+        }
+    }
 
     rocket::http::Status::Ok
 }
