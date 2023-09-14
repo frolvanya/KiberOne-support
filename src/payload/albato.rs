@@ -18,7 +18,7 @@ pub struct Data {
 }
 
 #[post("/albato-webhook", data = "<request>")]
-pub async fn post_albato_webhook(request: Json<Option<Data>>) -> rocket::http::Status {
+pub async fn post_webhook(request: Json<Option<Data>>) -> rocket::http::Status {
     info!("\n{:#?}", request);
 
     if request.is_none() {

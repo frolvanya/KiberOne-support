@@ -12,8 +12,7 @@ async fn rocket() -> _ {
         routes![
             payload::whatsapp::get_webhook,
             payload::whatsapp::post_webhook,
-            payload::facebook::get_webhook,
-            payload::facebook::post_webhook,
+            payload::albato::post_webhook,
         ],
     )
 }
