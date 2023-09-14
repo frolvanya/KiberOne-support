@@ -3,18 +3,18 @@ use rocket::serde::{json::Json, Deserialize};
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
 pub struct Data {
-    pub company_id: Option<String>,
-    pub company_name: Option<String>,
-    pub form_name: Option<String>,
-    pub full_name: Option<String>,
-    pub group_id: Option<String>,
-    pub group_name: Option<String>,
-    pub id: Option<String>,
-    pub lead_id: Option<String>,
-    pub lead_name: Option<String>,
-    pub phone_number: Option<String>,
-    pub platform: Option<String>,
-    pub timestamp: Option<String>,
+    company_id: Option<String>,
+    company_name: Option<String>,
+    form_name: Option<String>,
+    full_name: Option<String>,
+    group_id: Option<String>,
+    group_name: Option<String>,
+    id: Option<String>,
+    lead_id: Option<String>,
+    lead_name: Option<String>,
+    phone_number: Option<String>,
+    platform: Option<String>,
+    timestamp: Option<String>,
 }
 
 #[post("/albato-webhook", data = "<request>")]
