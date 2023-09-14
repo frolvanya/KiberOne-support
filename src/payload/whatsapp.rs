@@ -11,7 +11,7 @@ pub struct Data {
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
 struct Entry {
-    pub changes: Vec<Change>,
+    changes: Vec<Change>,
 }
 
 #[derive(Debug, Deserialize)]
