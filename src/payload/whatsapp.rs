@@ -83,7 +83,7 @@ pub async fn send_message(phone_number_id: String, to: String, text: String) {
     }
 }
 
-#[get("/webhook?<hub>")]
+#[get("/whatsapp-webhook?<hub>")]
 pub fn get_webhook(hub: Hub) -> Option<(rocket::http::Status, String)> {
     let token = std::env::var("WHATSAPP_TOKEN")
         .context("Unable to retrieve `WHATSAPP_TOKEN` from env")
@@ -104,7 +104,7 @@ pub fn get_webhook(hub: Hub) -> Option<(rocket::http::Status, String)> {
     None
 }
 
-#[post("/webhook", data = "<request>")]
+#[post("/whatsapp-webhook", data = "<request>")]
 pub async fn post_webhook(request: String /* Json<Option<Data>> */) -> rocket::http::Status {
     info!("\n{:#?}", request);
 
