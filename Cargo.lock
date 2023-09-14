@@ -614,6 +614,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "manager"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "log",
+ "pretty_env_logger",
+ "reqwest",
+ "rocket",
+ "serde",
+ "serde_json",
+ "tokio",
+]
+
+[[package]]
 name = "matchers"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1698,20 +1712,6 @@ checksum = "9b85cbef8c220a6abc02aefd892dfc0fc23afb1c6a426316ec33253a3877249b"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
-]
-
-[[package]]
-name = "whatsapp-webhook-rs"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "log",
- "pretty_env_logger",
- "reqwest",
- "rocket",
- "serde",
- "serde_json",
- "tokio",
 ]
 
 [[package]]
