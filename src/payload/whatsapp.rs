@@ -5,51 +5,51 @@ use rocket::serde::{json::Json, Deserialize};
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
 pub struct Data {
-    pub entry: Vec<Entry>,
+    entry: Vec<Entry>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct Entry {
+struct Entry {
     pub changes: Vec<Change>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct Change {
-    pub value: Value,
+struct Change {
+    value: Value,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct Value {
-    pub metadata: Metadata,
-    pub messages: Option<Vec<Message>>,
+struct Value {
+    metadata: Metadata,
+    messages: Option<Vec<Message>>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct Metadata {
-    pub phone_number_id: String,
+struct Metadata {
+    phone_number_id: String,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(crate = "rocket::serde")]
-pub struct Message {
-    pub from: String,
-    pub text: Option<TextBody>,
+struct Message {
+    from: String,
+    text: Option<TextBody>,
 }
 
 #[derive(Debug, serde::Deserialize)]
-pub struct TextBody {
-    pub body: String,
+struct TextBody {
+    body: String,
 }
 
 #[derive(Debug, PartialEq, FromForm)]
 pub struct Hub {
-    pub mode: Option<String>,
-    pub challenge: Option<String>,
-    pub verify_token: Option<String>,
+    mode: Option<String>,
+    challenge: Option<String>,
+    verify_token: Option<String>,
 }
 
 pub async fn send_message(phone_number_id: String, to: String, text: String) {
